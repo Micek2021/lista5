@@ -1,0 +1,95 @@
+Tree (prefix form): + 2 2
+Operation successful.
+Error: Tree is incomplete: missing operands.
+Operation successful.
+Tree (prefix form): + a a
+Operation successful.
+Tree (prefix form): + a a
+Operation successful.
+Error: Tree is incomplete: missing operands.
+Tree (prefix form): / 1 0
+Error: division by zero
+Tree (prefix form): / / 1 0 0
+Error: division by zero
+Tree (prefix form): + 2 2
+Operation successful.
+Error: Tree is incomplete: missing operands.
+Tree (prefix form): + 2 / 2 0
+Error: division by zero
+Tree (prefix form): + 2 2
+Error: no operator in sum
+Tree (prefix form): + 2 2
+Tree (prefix form): - 2 2
+Error: no operator in sum
+Tree (prefix form): + - 2 2 4
+Operation successful.
+Tree (prefix form): + - 2 2 4
+Error: no operator in sum
+Tree (prefix form): + - 2 2 4
+Operation successful.
+Tree (prefix form): + 2 2
+Error: no operator in sum
+Tree (prefix form): + 2 / 2 2
+Operation successful.
+Tree (prefix form): + 2 2
+Error: no operator in sum
+Tree (prefix form): - 2 3
+Operation successful.
+Tree (prefix form): a
+Tree (prefix form): - 2 4
+Operation successful.
+Tree (prefix form): + 2 2
+Error: no operator in sum
+Error: Tree is incomplete: missing operands.
+Tree (prefix form): + 2 2
+Operation successful.
+Tree (prefix form): / 1 0
+Error: division by zero
+Tree (prefix form): + 2 2
+Error: no operator in sum
+Tree (prefix form): + 2 3
+Tree (prefix form): + 2 3
+Tree (prefix form): + 2 2
+Tree (prefix form): + 2 2
+Tree (prefix form): + 2 2
+Tree (prefix form): + 2 2
+Tree (prefix form): + 2 2
+Tree (prefix form): + 2 2
+Tree (prefix form): + 2 2
+Error: no operator in sum
+Tree (prefix form): + a a
+Error: no operator in sum
+Tree (prefix form): / 2 a
+Operation successful.
+Tree (prefix form): + 2 2
+Error: no operator in sum
+Tree (prefix form): + 2 2
+Error: no operator in sum
+Tree (prefix form): + 2 2
+Error: no operator in sum
+Tree (prefix form): + 2 2
+Error: no operator in sum
+Tree (prefix form): + 2 2
+Tree (prefix form): + 2 2
+Error: no operator in sum
+Tree (prefix form): + 23 - 1 2
+Tree (prefix form): - 2 3
+Operation successful.
+Tree (prefix form): + 2 - 3 4
+Tree (prefix form): - 2 3
+Operation successful.
+Tree (prefix form): + 2 - 4 2
+Operation successful.
+Tree (prefix form): - 4 2
+Operation successful.
+Tree (prefix form): + 2 2
+Tree (prefix form): - 2 4
+Operation successful.
+Tree (prefix form): + 2 2
+Tree (prefix form): - 4 2
+Operation successful.
+Tree (prefix form): + 2 3
+Tree (prefix form): - 5 2
+Operation successful.
+Tree (prefix form): + 2 2
+Error: no operator in sum
