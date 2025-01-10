@@ -23,15 +23,17 @@ public:
 
     ExpressionTree operator=(ExpressionTree &expressionTree);
 
+    ExpressionTree operator=(ExpressionTree&& other) noexcept;
+
     ExpressionTree operator+(const ExpressionTree &other) const;
+
+    ExpressionTree operator+(ExpressionTree&& other) noexcept;
 
     std::string getVariables() const;
 
     friend std::ostream & operator<<(std::ostream &os, const ExpressionTree &expressionTree);
 
     void clearArgumentMap();
-
-    ExpressionTree operator=(ExpressionTree&& other) noexcept;
 
 private:
     void dfs(TreeNode *node);
@@ -40,7 +42,7 @@ private:
 
     std::string toString(TreeNode *node) const;
 
-    void join(ExpressionTree tree);
+    void join(const ExpressionTree& tree);
 
     TreeNode* defineTree(const std::string &s);
 

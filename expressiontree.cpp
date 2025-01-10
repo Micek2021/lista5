@@ -194,9 +194,16 @@ std::string ExpressionTree::toString(TreeNode *node) const {
 }
 
 ExpressionTree ExpressionTree::operator+(const ExpressionTree &other) const {
-    ExpressionTree expressionTree = std::move(*this);
+    ExpressionTree expressionTree = *this;
     expressionTree.join(other);
     return expressionTree;
+}
+
+
+ExpressionTree ExpressionTree::operator+(ExpressionTree &&other) noexcept {
+    ExpressionTree expressionTree = std::move(*this);
+    expressionTree.join(std::move(other));
+    return std::move(expressionTree);
 }
 
 
@@ -219,10 +226,10 @@ ResultHolder<double, ErrorInfo> ExpressionTree::calculate() const {
     return root->makeValue();
 }
 
-void ExpressionTree::join(ExpressionTree tree) {
-    ExpressionTree other = std::move(tree);
+void ExpressionTree::join(const ExpressionTree &tree) {
+    ExpressionTree other = tree;
 
-    TreeNode *parent = std::move(root);
+    TreeNode *parent = root;
     while (parent != NULL && !parent->children.empty() && !parent->children[0]->children.empty()) {
         parent = parent->children[0];
     }
@@ -243,9 +250,9 @@ void ExpressionTree::join(ExpressionTree tree) {
     }
 
     if (parent == root && (parent == NULL || parent->children.empty())) {
-        root = std::move(other.root);
+        root = other.root;
     } else if (parent != NULL) {
-        parent->children[0] = std::move(other.root);
+        parent->children[0] = other.root;
     }
 
     other.root = NULL;
@@ -259,7 +266,7 @@ void ExpressionTree::join(ExpressionTree tree) {
         } else {
             variables.insert(*it);
         }
-    }
+         }
 
     dfs(root);
 }
