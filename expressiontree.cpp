@@ -160,7 +160,7 @@ ResultHolder<ExpressionTree*, ErrorInfo> ExpressionTree::loadExpression(const st
         return ResultHolder<ExpressionTree*, ErrorInfo>::failure(new ErrorInfo(INCOMPLETETREELOADINGERRORINFO));
     }
 
-    root = std::move(newRoot);
+    root = newRoot;
     return ResultHolder<ExpressionTree*, ErrorInfo>::success(this);
 }
 
