@@ -2,8 +2,18 @@
 #include <string>
 #include "expressiontree.h"
 #include "processor.h"
+#include "smartpointer.h"
+
+void useSmartPointer() {
+    SmartPointer<int> ptr1(new int(10));
+    SmartPointer<int> ptr2 = ptr1;
+
+    std::cout << "Value: " << *ptr1 << std::endl;
+    std::cout << "Value: " << *ptr2 << "\n\n\n\n\n";
+}
 
 int main() {
+    //testy = i +
     ExpressionTree tree;
     InputProcessor processor;
 
@@ -36,8 +46,12 @@ int main() {
 
     ExpressionTree tree6 = std::move(tree3) + std::move(tree4);
     std::cout << "tree6 - Copies: " << tree6.getCopyCount()
-              << ", Moves: " << tree6.getMoveCount() << std::endl << std::endl << std::endl << std::endl << std::endl;
+              << ", Moves: " << tree6.getMoveCount() << "\n\n\n\n\n";
 
+    //Test smartpointera
+    useSmartPointer();
+
+    //menu
     std::cout << "enter\n";
     std::cout << "vars\n";
     std::cout << "print\n";
