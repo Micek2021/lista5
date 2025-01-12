@@ -64,14 +64,18 @@ TreeNode *ExpressionTree::defineTree(const std::string &s) {
     return NULL;
 }
 
+ExpressionTree::ExpressionTree() : root(NULL), moveCount(0), copyCount(0) {}
 
-
-ExpressionTree::ExpressionTree() : root(NULL) {}
+ExpressionTree::~ExpressionTree() {
+    delete root;
+}
 
 ExpressionTree::ExpressionTree(const ExpressionTree &other)
     : root(other.root != NULL ? other.root->clone() : NULL),
-      variables(other.variables){
-
+      variables(other.variables),
+      copyCount(other.copyCount +1),
+      moveCount(other.getMoveCount())
+    {
     if (root != NULL) {
         dfs(root);
     }
@@ -81,6 +85,8 @@ ExpressionTree::ExpressionTree(ExpressionTree &&other) noexcept{
     root = other.root;
     other.root = nullptr;
     variables = std::move(other.variables);
+    copyCount = other.copyCount;
+    moveCount = other.moveCount + 1;
     if(root) {
         dfs(root);
     }
@@ -92,6 +98,8 @@ ExpressionTree ExpressionTree::operator=(ExpressionTree &&other) noexcept {
         root = other.root;
         other.root = nullptr;
         variables = std::move(other.variables);
+        moveCount = this->moveCount + other.moveCount + 1;
+        copyCount = this->copyCount +  other.copyCount;
         if (root != nullptr) {
             dfs(root);
         }
@@ -99,16 +107,16 @@ ExpressionTree ExpressionTree::operator=(ExpressionTree &&other) noexcept {
     return *this;
 }
 
-ExpressionTree::~ExpressionTree() {
-    delete root;
-}
-
-ExpressionTree ExpressionTree::operator=(ExpressionTree &expressionTree) {
-    variables = expressionTree.variables;
-    std::swap(root, expressionTree.root);
+ExpressionTree ExpressionTree::operator=(ExpressionTree &other) {
+    variables = other.variables;
+    std::swap(root, other.root);
     if (root != NULL) {
         dfs(root);
     }
+
+    moveCount = this->moveCount + other.moveCount;
+    copyCount = this->copyCount +  other.copyCount + 1;
+
     return *this;
 }
 
@@ -161,6 +169,8 @@ ResultHolder<ExpressionTree*, ErrorInfo> ExpressionTree::loadExpression(const st
     }
 
     root = newRoot;
+    moveCount = 0;
+    copyCount = 0;
     return ResultHolder<ExpressionTree*, ErrorInfo>::success(this);
 }
 
@@ -194,16 +204,20 @@ std::string ExpressionTree::toString(TreeNode *node) const {
 }
 
 ExpressionTree ExpressionTree::operator+(const ExpressionTree &other) const {
-    ExpressionTree expressionTree = *this;
-    expressionTree.join(other);
-    return expressionTree;
+    ExpressionTree result = *this;
+    result.join(other);
+    result.copyCount = this->copyCount + other.copyCount + 1;
+    result.moveCount = this->moveCount + other.moveCount;
+    return result;
 }
 
 
 ExpressionTree ExpressionTree::operator+(ExpressionTree &&other) noexcept {
-    ExpressionTree expressionTree = std::move(*this);
-    expressionTree.join(std::move(other));
-    return std::move(expressionTree);
+    ExpressionTree result = std::move(*this);
+    result.join(std::move(other));
+    result.copyCount = this->copyCount + other.copyCount;
+    result.moveCount = this->moveCount + other.moveCount + 1;
+    return std::move(result);
 }
 
 
@@ -306,4 +320,11 @@ bool ExpressionTree::isTreeComplete(TreeNode *node) const {
     return true;
 }
 
+int ExpressionTree::getCopyCount() const {
+    return copyCount;
+}
+
+int ExpressionTree::getMoveCount() const {
+    return moveCount;
+}
 

@@ -37,9 +37,9 @@ ResultHolder<double, ErrorInfo> Add::makeValue() const {
         return children[1]->makeValue();
     }
     //modyfikacja
-    if(!(children[0]->expectedChildNumber != 0 || children[1]->expectedChildNumber != 0)) {
-        return ResultHolder<double, ErrorInfo>::failure(new ErrorInfo(NOOPERATORINSUM));
-    }
+    // if(!(children[0]->expectedChildNumber != 0 || children[1]->expectedChildNumber != 0)) {
+    //     return ResultHolder<double, ErrorInfo>::failure(new ErrorInfo(NOOPERATORINSUM));
+    // }
     return ResultHolder<double, ErrorInfo>::success(children[0]->makeValue().getValue()+children[1]->makeValue().getValue());
 }
 

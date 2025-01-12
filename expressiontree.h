@@ -21,7 +21,7 @@ public:
 
     ResultHolder<double, ErrorInfo> calculate() const;
 
-    ExpressionTree operator=(ExpressionTree &expressionTree);
+    ExpressionTree operator=(ExpressionTree &other);
 
     ExpressionTree operator=(ExpressionTree&& other) noexcept;
 
@@ -34,6 +34,9 @@ public:
     friend std::ostream & operator<<(std::ostream &os, const ExpressionTree &expressionTree);
 
     void clearArgumentMap();
+
+    int getCopyCount() const;
+    int getMoveCount() const;
 
 private:
     void dfs(TreeNode *node);
@@ -50,6 +53,9 @@ private:
 
     TreeNode *root;
     std::map<std::string, std::pair<double, int>> variables;
+
+    int copyCount;
+    int moveCount;
 };
 
 std::ostream& operator<<(std::ostream &os, const ExpressionTree &obj);
