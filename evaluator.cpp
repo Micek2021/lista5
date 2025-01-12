@@ -68,6 +68,7 @@ void JoinEvaluator::evaluate(ExpressionTree &tree) const {
         std::cout << result.getErrorList().at(0)->getErrorMessage() << std::endl;
     }else {
         tree = tree + other;
+        std::cout << tree.toStringCopyMoveCount();
     }
 }
 

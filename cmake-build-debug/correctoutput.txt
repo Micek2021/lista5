@@ -101,3 +101,17 @@ Tree (prefix form): + 2 2
 Tree (prefix form): + 2 2
 Tree (prefix form): + 2 2
 Error: no operator in sum
+Tree (prefix form): + 2 2
+Operation successful.
+Tree (prefix form): + 2 2
+Tree (prefix form): + 2 2
+Tree (prefix form): + 2 2
+Tree (prefix form): + 2 2
+Tree (prefix form): - 2 2
+Tree (prefix form): + 2 2
+Tree (prefix form): + 2 2
+Tree (prefix form): + 2 2
+Tree (prefix form): - 2 3
+Tree (prefix form): + 2 2
+Tree (prefix form): + 2 2
+Operation successful.

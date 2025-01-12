@@ -35,6 +35,8 @@ public:
 
     void clearArgumentMap();
 
+    std::string toStringCopyMoveCount() const;
+
     int getCopyCount() const;
     int getMoveCount() const;
 

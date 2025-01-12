@@ -328,3 +328,8 @@ int ExpressionTree::getMoveCount() const {
     return moveCount;
 }
 
+std::string ExpressionTree::toStringCopyMoveCount() const {
+    std::ostringstream os;
+    os << "Copies: " << copyCount << ", Moves:" << moveCount << std::endl;
+    return os.str();
+}
