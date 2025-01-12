@@ -23,30 +23,24 @@ int main() {
     std::cout << "Test konstruktorow i przypisania:" << std::endl;
 
     ExpressionTree tree3 = tree1;
-    std::cout << "tree3 - Copies: " << tree3.getCopyCount()
-              << ", Moves: " << tree3.getMoveCount() << std::endl;
+    std::cout << "tree3 - " <<tree3.toStringCopyMoveCount();
 
     tree3 = tree2;
-    std::cout << "tree3 after assignment - Copies: " << tree3.getCopyCount()
-              << ", Moves: " << tree3.getMoveCount() << std::endl;
+    std::cout << "tree3 after assignment - " << tree3.toStringCopyMoveCount();
 
     ExpressionTree tree4 = std::move(tree1);
-    std::cout << "tree4 - Copies: " << tree4.getCopyCount()
-              << ", Moves: " << tree4.getMoveCount() << std::endl;
+    std::cout << "tree4 - " << tree4.toStringCopyMoveCount();
 
     tree4 = std::move(tree2);
-    std::cout << "tree4 after move assignment - Copies: " << tree4.getCopyCount()
-              << ", Moves: " << tree4.getMoveCount() << std::endl;
+    std::cout << "tree4 after move assignment - " << tree4.toStringCopyMoveCount();
 
     std::cout << "\nTest operatora dodawania:" << std::endl;
 
     ExpressionTree tree5 = tree3 + tree4;
-    std::cout << "tree5 - Copies: " << tree5.getCopyCount()
-              << ", Moves: " << tree5.getMoveCount() << std::endl;
+    std::cout << "tree5 - " << tree5.toStringCopyMoveCount();
 
     ExpressionTree tree6 = std::move(tree3) + std::move(tree4);
-    std::cout << "tree6 - Copies: " << tree6.getCopyCount()
-              << ", Moves: " << tree6.getMoveCount() << "\n\n\n\n\n";
+    std::cout << "tree6 - " << tree6.toStringCopyMoveCount() << "\n\n\n\n\n";
 
     //Test smartpointera
     useSmartPointer();
